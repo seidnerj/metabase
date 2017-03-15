@@ -17,10 +17,5 @@ export const getRoutes = (store) =>
             <Route path="dashboard/:uuid" component={PublicDashboard} />
             <Route path="*" component={PublicNotFound} />
         </Route>
-        <Route path="embed" component={PublicApp}>
-            <Route path="question/:token" component={PublicQuestion} />
-            <Route path="dashboard/:token" component={PublicDashboard} />
-            <Route path="*" component={PublicNotFound} />
-        </Route>
         <Route path="*" component={PublicNotFound} />
     </Route>
