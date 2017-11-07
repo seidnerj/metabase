@@ -2,7 +2,7 @@ import "__support__/integrated_tests";
 
 import React from "react";
 
-import Visualization from "metabase/visualizations/components/Visualization";
+import ChartSettingOrderedFields from "metabase/visualizations/components/Visualization";
 
 import LegendHeader from "metabase/visualizations/components/LegendHeader";
 import LegendItem from "metabase/visualizations/components/LegendItem";
