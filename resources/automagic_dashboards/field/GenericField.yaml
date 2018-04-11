@@ -29,12 +29,19 @@ dashboard_filters:
   - State
   - Country
   - GenericCategoryMedium
+groups:
+  - Overview:
+      title: Overview
+  - Breakdowns:
+      title: Breakdowns
 cards:
   - Distribution:
       title: Distribution of [[this]]
       visualization: bar
       metrics: Count
       dimensions: this
+      group: Overview
+      width: 12
   - ByNumber:
       title: "[[GenericNumber]] by [[this]]"
       visualization: line
@@ -42,3 +49,4 @@ cards:
       - Sum
       - Avg
       dimensions: this
+      group: Breakdowns
