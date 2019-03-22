@@ -3863,16 +3863,16 @@ msgid "Cumulative sum of ..."
 msgstr "Сума наростаючим підсумком ..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:493
-msgid "Additive sum of all the values of a column.\\ne.x. total revenue over time."
-msgstr "Сукупна сума всіх значень стовпця. \\ ne.x. всього дохід за часовий інтервал."
+msgid "Additive sum of all the values of a column.\\\\ne.x. total revenue over time."
+msgstr "Сукупна сума всіх значень стовпця. \\\\ ne.x. всього дохід за часовий інтервал."
 
 #: frontend/src/metabase/lib/schema_metadata.js:499
 msgid "Cumulative count of rows"
 msgstr "Наростаючий підсумок"
 
 #: frontend/src/metabase/lib/schema_metadata.js:501
-msgid "Additive count of the number of rows.\\ne.x. total number of sales over time."
-msgstr "Сукупна кількість записів. \\ ne.x. всього продажів за часовий інтервал."
+msgid "Additive count of the number of rows.\\\\ne.x. total number of sales over time."
+msgstr "Сукупна кількість записів. \\\\ ne.x. всього продажів за часовий інтервал."
 
 #: frontend/src/metabase/lib/schema_metadata.js:507
 msgid "Standard deviation of ..."
