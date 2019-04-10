@@ -14,8 +14,7 @@
   (->> {:aggregation [[:count-where [:< [:field-id (data/id :venues :price)] 4]]]}
        (data/run-mbql-query venues)
        rows
-       ffirst
-       long))
+       ffirst))
 
 ;; Test normalization
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations)
@@ -23,8 +22,7 @@
   (->> {:aggregation [["count-where" ["<" ["field-id" (data/id :venues :price)] 4]]]}
        (data/run-mbql-query venues)
        rows
-       ffirst
-       long))
+       ffirst))
 
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations)
   17
@@ -33,8 +31,7 @@
                                       [:ends-with [:field-id (data/id :venues :name)] "t"]]]]]}
        (data/run-mbql-query venues)
        rows
-       ffirst
-       long))
+       ffirst))
 
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations)
   nil
@@ -56,15 +53,14 @@
        (tu/round-all-decimals 2)
        rows
        (map (fn [[k v]]
-              [(long k) (long v)]))))
+              [(long k) v]))))
 
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations :expressions)
   48
   (->> {:aggregation [[:+ [:/ [:count-where [:< [:field-id (data/id :venues :price)] 4]] 2] 1]]}
        (data/run-mbql-query venues)
        rows
-       ffirst
-       long))
+       ffirst))
 
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations)
   94
@@ -74,8 +70,7 @@
     (->> {:aggregation [[:count-where [:segment segment-id]]]}
          (data/run-mbql-query venues)
          rows
-         ffirst
-         long)))
+         ffirst)))
 
 (datasets/expect-with-drivers (non-timeseries-drivers-with-feature :basic-aggregations)
   94
@@ -85,5 +80,4 @@
     (->> {:aggregation [[:metric metric-id]]}
          (data/run-mbql-query venues)
          rows
-         ffirst
-         long)))
+         ffirst)))
