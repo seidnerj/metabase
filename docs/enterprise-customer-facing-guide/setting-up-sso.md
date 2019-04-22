@@ -1,5 +1,5 @@
 ## Let you customers log in with SSO using SAML or JWT
-The Enterprise edition of Metabase lets you connect your SAML- or JWT-based SSO it. Integrating your SSO with Metabase allows you to:
+The Enterprise edition of Metabase lets you connect your SAML- or JWT-based SSO to it. Integrating your SSO with Metabase allows you to:
 
 * automatically pass user attributes from your SSO to Metabase in order to power data sandboxes
 * let your customers access Metabase embedded within your own web app
