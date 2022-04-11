@@ -7,11 +7,7 @@ export const ModalRoot = styled.div`
   max-height: 90vh;
 `;
 
-export interface ModalBodyProps {
-  isTopAligned?: boolean;
-}
-
-export const ModalBody = styled.div<ModalBodyProps>`
+export const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
