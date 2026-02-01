@@ -249,6 +249,8 @@ export const buildNumericDimensionAxis = (
 
   const [min, max] = extent;
   const axisPadding = interval / 2;
+  const removeAxisPadding = settings["graph.x_axis.remove_padding"] ?? false;
+  const shouldPad = isPadded && !removeAxisPadding;
 
   return {
     ...getCommonDimensionAxisOptions(
@@ -262,13 +264,13 @@ export const buildNumericDimensionAxis = (
       margin: CHART_STYLE.axisTicksMarginX,
       ...getDimensionTicksDefaultOption(settings, renderingContext),
       formatter: (rawValue: number) => {
-        if (isPadded && (rawValue < min || rawValue > max)) {
+        if (shouldPad && (rawValue < min || rawValue > max)) {
           return "";
         }
         return getPaddedAxisLabel(formatter(fromEChartsAxisValue(rawValue)));
       },
     },
-    ...(isPadded
+    ...(shouldPad
       ? {
           min: () => min - axisPadding,
           max: () => max + axisPadding,
@@ -287,8 +289,9 @@ export const buildTimeSeriesDimensionAxis = (
   chartMeasurements: ChartMeasurements,
   renderingContext: RenderingContext,
 ): XAXisOption => {
+  const removeAxisPadding = settings["graph.x_axis.remove_padding"] ?? false;
   const { formatter, maxInterval, minInterval, canRender, xDomainPadded } =
-    getTicksOptions(xAxisModel, width);
+    getTicksOptions(xAxisModel, width, removeAxisPadding);
 
   return {
     ...getCommonDimensionAxisOptions(
@@ -337,6 +340,8 @@ export const buildCategoricalDimensionAxis = (
     "graph.x_axis.axis_enabled": autoAxisEnabled,
   };
 
+  const removeAxisPadding = settings["graph.x_axis.remove_padding"] ?? false;
+
   return {
     ...getCommonDimensionAxisOptions(
       chartMeasurements,
@@ -344,6 +349,7 @@ export const buildCategoricalDimensionAxis = (
       renderingContext,
     ),
     type: "category",
+    boundaryGap: !removeAxisPadding,
     axisLabel: {
       margin: CHART_STYLE.axisTicksMarginX,
       ...getDimensionTicksDefaultOption(settings, renderingContext),
