@@ -20,13 +20,24 @@ import type {
   ChannelSpecs,
   Dashboard,
   ScheduleSettings,
+  ScheduleType,
 } from "metabase-types/api";
 import type { DraftDashboardSubscription } from "metabase-types/store";
 
+import S from "./AddEditSidebar.module.css";
 import { CaveatMessage } from "./CaveatMessage";
 import DefaultParametersSection from "./DefaultParametersSection";
 import { DeleteSubscriptionAction } from "./DeleteSubscriptionAction";
 import Heading from "./Heading";
+
+const SUBSCRIPTION_SCHEDULE_OPTIONS: ScheduleType[] = [
+  "every_n_minutes",
+  "hourly",
+  "daily",
+  "weekly",
+  "monthly",
+  "cron",
+];
 
 interface AddEditSlackSidebarProps {
   pulse: DraftDashboardSubscription;
@@ -36,6 +47,8 @@ interface AddEditSlackSidebarProps {
   parameters: UiParameter[];
   hiddenParameters?: string;
   dashboard: Dashboard;
+  cronString?: string;
+  isCustomSchedule?: boolean;
   handleSave: () => void;
   onCancel: () => void;
   onChannelPropertyChange: (property: string, value: unknown) => void;
@@ -57,6 +70,8 @@ export const AddEditSlackSidebar = ({
   parameters,
   hiddenParameters,
   dashboard,
+  cronString: cronStringProp,
+  isCustomSchedule,
   // form callbacks
   handleSave,
   onCancel,
@@ -94,17 +109,25 @@ export const AddEditSlackSidebar = ({
           />
         )}
         <Schedule
-          cronString={scheduleSettingsToCron(
-            _.pick(
-              channel,
-              "schedule_day",
-              "schedule_frame",
-              "schedule_hour",
-              "schedule_type",
-            ),
-          )}
-          scheduleOptions={channelSpec.schedules}
+          cronString={
+            cronStringProp ??
+            scheduleSettingsToCron(
+              _.pick(
+                channel,
+                "schedule_day",
+                "schedule_frame",
+                "schedule_hour",
+                "schedule_type",
+                "schedule_minute",
+              ),
+            )
+          }
+          scheduleOptions={SUBSCRIPTION_SCHEDULE_OPTIONS}
           verb={t`Send`}
+          minutesOnHourPicker
+          labelAlignment="left"
+          className={S.schedule}
+          isCustomSchedule={isCustomSchedule}
           onScheduleChange={(nextCronString, nextSchedule) =>
             onChannelScheduleChange(nextCronString, nextSchedule)
           }
