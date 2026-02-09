@@ -50,7 +50,7 @@
     [:notification/dashboard
      [:map
       [:creator_id ms/PositiveInt]
-      [:payload    {:optional true} ::models.notification/NotificationDashboard]]]]
+      [:payload    {:optional true} ::models.notification/NotificationDashboard]]]
     ;; for testing only
     [:notification/testing :map]]])
 
